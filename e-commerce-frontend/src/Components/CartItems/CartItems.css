@@ -96,6 +96,33 @@
     color: white;
     cursor: pointer;
 }
+.Link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    border: 1px solid #007bff;
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .Link:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    color: #fff;
+  }
+  
+  .Link:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #007bff;
+  }
+  
+
+
+
 @media(max-width:1280px){
     .cartitems{
         margin: 60px 8%;
