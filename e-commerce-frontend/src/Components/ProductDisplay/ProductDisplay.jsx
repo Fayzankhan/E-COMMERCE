@@ -1,13 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./ProductDisplay.css";
 import star_icon from "../Assets/star_icon.png";
 import star_dull_icon from "../Assets/star_dull_icon.png";
 import { ShopContext } from "../../Context/ShopContext";
 
 const ProductDisplay = (props) => {
+  const { product } = props;
+  const { addToCart } = useContext(ShopContext);
 
-  const {product} = props;
-  const {addToCart} = useContext(ShopContext);
+  // State for selected size
+  const [selectedSize, setSelectedSize] = useState("");
+
+  // Function to handle size selection
+  const handleSizeSelect = (size) => {
+    setSelectedSize(size);
+  };
 
   return (
     <div className="productdisplay">
@@ -44,14 +51,14 @@ const ProductDisplay = (props) => {
         <div className="productdisplay-right-size">
           <h1>Select Size</h1>
           <div className="productdisplay-right-sizes">
-            <div>S</div>
-            <div>M</div>
-            <div>L</div>
-            <div>XL</div>
-            <div>XXL</div>
+            <div className={selectedSize === "S" ? "selected" : ""} onClick={() => handleSizeSelect("S")}>S</div>
+            <div className={selectedSize === "M" ? "selected" : ""} onClick={() => handleSizeSelect("M")}>M</div>
+            <div className={selectedSize === "L" ? "selected" : ""} onClick={() => handleSizeSelect("L")}>L</div>
+            <div className={selectedSize === "XL" ? "selected" : ""} onClick={() => handleSizeSelect("XL")}>XL</div>
+            <div className={selectedSize === "XXL" ? "selected" : ""} onClick={() => handleSizeSelect("XXL")}>XXL</div>
           </div>
         </div>
-        <button onClick={()=>{addToCart(product.id)}}>ADD TO CART</button>
+        <button onClick={() => { addToCart(product.id, selectedSize) }}>ADD TO CART</button>
         <p className="productdisplay-right-category"><span>Category :</span> Women, T-shirt, Crop Top</p>
         <p className="productdisplay-right-category"><span>Tags :</span> Modern, Latest</p>
       </div>
